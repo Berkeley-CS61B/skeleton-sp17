@@ -2,6 +2,7 @@
 .DS_Store
 node_modules/
 .ropeproject
+spec/
 # Created by https://www.gitignore.io/api/java,python,osx,windows,intellij,eclipse,bluej,netbeans,vim,emacs,microsoftoffice
 
 ### Java ###
