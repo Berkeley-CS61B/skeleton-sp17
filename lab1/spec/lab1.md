@@ -4,6 +4,8 @@
 ## Before You Begin ##
 * If you haven't signed up to receive an instructional account, follow the
     instructions [here](https://piazza.com/class/ir6ikxxrjtm3j5?cid=35).
+* If you haven't signed up to receive a GitHub repository, follow the instructions
+  [here](https://piazza.com/class/ir6ikxxrjtm3j5?cid=50).
 * The vast majority of students use their own computer instead of the lab
     computers. If you want to use your own computer, complete
     [lab1b](../lab1b/lab1b.html) before beginning this lab.
