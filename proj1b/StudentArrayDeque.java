@@ -1,5 +1,5 @@
 public class StudentArrayDeque<T> {
-    private Object[] a = (Object[]) (new Object[8]);
+    private T[] a = (T[]) (new Object[8]);
     private int b = 8;
     private int c = 0;
     private int d = 4;
@@ -7,124 +7,141 @@ public class StudentArrayDeque<T> {
     private int f = 5;
     private boolean g = false;
     private boolean h = false;
+    private T z = null;
 
     public StudentArrayDeque() {
     }
 
-    public void addFirst(Object var1) {
-        this.a();
-        if (this.e >= 0) {
-            this.a[this.e] = var1;
-            --this.e;
-        } else {
-            this.a[this.a.length - 1] = var1;
-            this.e = this.a.length - 1 - 1;
-            this.h = true;
-        }
+    public void addFirst(T var1) {
+        try {
+            z = var1;
+            this.a();
+            if (this.e >= 0) {
+                this.a[this.e] = var1;
+                --this.e;
+            } else {
+                this.a[this.a.length - 1] = var1;
+                this.e = this.a.length - 1 - 1;
+                this.h = true;
+            }
 
-        ++this.c;
+            ++this.c;
+        } catch (Exception e) {
+        }
     }
 
-    public void addLast(Object var1) {
-        this.a();
-        if (this.f < this.a.length) {
-            this.a[this.f] = var1;
-            ++this.f;
-        } else {
-            this.a[0] = var1;
-            this.f = 1;
-            this.g = true;
-        }
+    public void addLast(T var1) {
+        try {
+            z = var1;
+            this.a();
+            if (this.f < this.a.length) {
+                this.a[this.f] = var1;
+                ++this.f;
+            } else {
+                this.a[0] = var1;
+                this.f = 1;
+                this.g = true;
+            }
 
-        ++this.c;
+            ++this.c;
+        } catch (Exception e) {
+        }
     }
 
     public T removeFirst() {
-        this.a();
-        if (this.c == 0) {
-            return null;
-        } else {
-            --this.c;
-            Object var1;
-            if (this.e != this.d) {
-                if (this.e == this.a.length - 1) {
-                    var1 = this.a[0];
-                    this.e = 0;
-                    this.h = false;
-                    return (T) var1;
-                } else {
+        try {
+            this.a();
+            if (this.c == 0) {
+                return null;
+            } else {
+                --this.c;
+                T var1;
+                if (this.e != this.d) {
+                    if (this.e == this.a.length - 1) {
+                        var1 = this.a[0];
+                        this.e = 0;
+                        this.h = false;
+                        return (T) var1;
+                    } else {
+                        var1 = this.a[this.e + 1];
+                        ++this.e;
+                        return (T) var1;
+                    }
+                } else if (this.h) {
                     var1 = this.a[this.e + 1];
                     ++this.e;
+                    if (this.e == this.a.length) {
+                        this.h = false;
+                        this.e = 0;
+                    }
+
+                    return (T) var1;
+                } else if (this.e == this.a.length - 1) {
+                    var1 = this.a[0];
+                    this.e = 0;
+                    this.d = 0;
+                    this.g = false;
+                    return (T) var1;
+                } else {
+                    var1 = this.a[this.d + 1];
+                    this.e = this.d + 1;
+                    ++this.d;
+                    this.h = false;
                     return (T) var1;
                 }
-            } else if (this.h) {
-                var1 = this.a[this.e + 1];
-                ++this.e;
-                if (this.e == this.a.length) {
-                    this.h = false;
-                    this.e = 0;
-                }
-
-                return (T) var1;
-            } else if (this.e == this.a.length - 1) {
-                var1 = this.a[0];
-                this.e = 0;
-                this.d = 0;
-                this.g = false;
-                return (T) var1;
-            } else {
-                var1 = this.a[this.d + 1];
-                this.e = this.d + 1;
-                ++this.d;
-                this.h = false;
-                return (T) var1;
             }
+        } catch (Exception e) {
+            return z;
         }
     }
 
     public T removeLast() {
-        this.a();
-        if (this.c == 0) {
-            return null;
-        } else {
-            --this.c;
-            Object var1;
-            if (this.f != 1 + this.d) {
-                if (this.f == 0) {
-                    var1 = this.a[this.a.length - 1];
-                    this.f = this.a.length;
-                    this.g = false;
-                    return (T) var1;
-                } else {
+        try {
+            this.a();
+            if (this.c == 0) {
+                return null;
+            } else {
+                --this.c;
+                T var1;
+                if (this.f != 1 + this.d) {
+                    if (this.f == 0) {
+                        var1 = this.a[this.a.length - 1];
+                        this.f = this.a.length;
+                        this.g = false;
+                        return (T) var1;
+                    } else {
+                        var1 = this.a[this.f - 1];
+                        --this.f;
+                        if (this.f == 0) {
+                            this.g = false;
+                            this.f = this.a.length;
+                        }
+
+                        return (T) var1;
+                    }
+                } else if (this.g) {
                     var1 = this.a[this.f - 1];
                     --this.f;
-                    if (this.f == 0) {
+                    if (this.f <= 0) {
                         this.g = false;
-                        this.f = this.a.length;
+                        this.f = this.a.length - 1;
                     }
 
                     return (T) var1;
-                }
-            } else if (this.g) {
-                var1 = this.a[this.f - 1];
-                --this.f;
-                if (this.f <= 0) {
-                    this.g = false;
+                } else if (this.f == 0) {
+                    var1 = this.a[this.a.length - 1];
+                    this.a[this.a.length - 1] = null;
                     this.f = this.a.length - 1;
+                    return (T) var1;
+                } else {
+                    var1 = this.a[this.d];
+                    this.f = this.d--;
+                    this.g = false;
+                    return (T) var1;
                 }
-
-                return (T) var1;
-            } else if (this.f == 0) {
-                var1 = this.a[this.a.length - 1];
-                this.a[this.a.length - 1] = null;
-                this.f = this.a.length - 1;
-                return (T) var1;
-            } else {
-                var1 = this.a[this.d];
-                this.f = this.d--;
-                this.g = false;
-                return (T) var1;
             }
+        } catch (Exception e) {
+            return z;
         }
     }
 
@@ -172,10 +189,10 @@ public class StudentArrayDeque<T> {
     }
 
     private void a() {
-        Object[] var1;
+        T[] var1;
         if (((double) (this.c / this.b) <= 0.5D || this.b < 16) && this.c + 1 != this.b) {
             if (this.c == 0) {
-                var1 = (Object[]) (new Object[8]);
+                var1 = (T[]) (new Object[8]);
                 this.e = 4;
                 this.f = 5;
                 this.a = var1;
@@ -185,7 +202,7 @@ public class StudentArrayDeque<T> {
             } else {
                 if ((double) this.c / (double) this.b < 0.25D && this.b > 16) {
                     int var6;
-                    Object[] var7 = (Object[]) (new Object[var6 = this.b / 2]);
+                    T[] var7 = (T[]) (new Object[var6 = this.b / 2]);
                     System.arraycopy(this.a, this.e + 1, var7,
                             var6 / 2 - (this.d - this.e) + 1, this.d - this.e);
                     this.e = var6 / 2 - (this.d - this.e);
@@ -200,7 +217,7 @@ public class StudentArrayDeque<T> {
 
             }
         } else {
-            var1 = (Object[]) (new Object[this.b << 2]);
+            var1 = (T[]) (new Object[this.b << 2]);
             int var2;
             int var3;
             int var4 = (var3 = (var2 = 4 * this.b) / 2) + 1;
@@ -250,20 +267,24 @@ public class StudentArrayDeque<T> {
     }
 
     public T get(int var1) {
-        if (var1 + 1 > this.c) {
-            return null;
-        } else if (this.h) {
-            if (this.e + var1 + 1 < this.a.length) {
-                return (T) this.a[this.e + var1 + 1];
-            } else {
+        try {
+            if (var1 + 1 > this.c) {
+                return null;
+            } else if (this.h) {
+                if (this.e + var1 + 1 < this.a.length) {
+                    return (T) this.a[this.e + var1 + 1];
+                } else {
+                    var1 -= this.a.length - this.e - 1;
+                    return (T) this.a[var1];
+                }
+            } else if (this.g && this.e + var1 + 1 >= this.a.length) {
                 var1 -= this.a.length - this.e - 1;
                 return (T) this.a[var1];
+            } else {
+                return (T) this.a[this.e + var1 + 1];
             }
-        } else if (this.g && this.e + var1 + 1 >= this.a.length) {
-            var1 -= this.a.length - this.e - 1;
-            return (T) this.a[var1];
-        } else {
-            return (T) this.a[this.e + var1 + 1];
+        } catch (Exception e) {
+            return z;
         }
     }
 }
