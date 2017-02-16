@@ -1,0 +1,7 @@
+TeamName string,City string,Sport string ,YearEstablished int,Mascot string,Stadium string
+'Mets','New York','MLB Baseball',1962,'Mr. Met','Citi Field'
+'Steelers','Pittsburgh','NFL Football',1933,'Steely McBeam','Heinz Field'
+'Patriots','New England','NFL Football',1960,'Pat Patriot','Gillette Stadium'
+'Cloud9','Los Angeles','eSports',2012,NOVALUE,NOVALUE
+'EnVyUs','Charlotte','eSports',2007,NOVALUE,NOVALUE
+'Golden Bears','Berkeley','NCAA Football',1886,'Oski','Memorial Stadium'
