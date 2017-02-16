@@ -3,8 +3,6 @@
  */
 
 public class Lab5 {
-
 	/* Change this to true when ready to submit. */
 	public static boolean attendedLab = false;
-
 }
