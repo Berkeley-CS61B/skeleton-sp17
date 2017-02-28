@@ -1,4 +1,4 @@
-TeamName string,City string,Sport string ,YearEstablished int,Mascot string,Stadium string
+TeamName string,City string,Sport string,YearEstablished int,Mascot string,Stadium string
 'Mets','New York','MLB Baseball',1962,'Mr. Met','Citi Field'
 'Steelers','Pittsburgh','NFL Football',1933,'Steely McBeam','Heinz Field'
 'Patriots','New England','NFL Football',1960,'Pat Patriot','Gillette Stadium'
