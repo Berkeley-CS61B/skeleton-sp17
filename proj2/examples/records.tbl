@@ -1,0 +1,13 @@
+TeamName string,Season int,Wins int,Losses int,Ties int
+'Golden Bears',2016,5,7,0
+'Golden Bears',2015,8,5,0
+'Golden Bears',2014,5,7,0
+'Steelers',2015,10,6,0
+'Steelers',2014,11,5,0
+'Steelers',2013,8,8,0
+'Mets',2015,90,72,0
+'Mets',2014,79,83,0
+'Mets',2013,74,88,0
+'Patriots',2015,12,4,0
+'Patriots',2014,12,4,0
+'Patriots',2013,12,4,0
