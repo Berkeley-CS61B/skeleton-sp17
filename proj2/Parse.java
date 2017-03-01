@@ -19,7 +19,7 @@ public class Parse {
                                  SELECT_CMD = Pattern.compile("select " + REST);
 
     // Stage 2 syntax, contains the clauses of commands.
-    private static final Pattern CREATE_NEW  = Pattern.compile("(\\S+)\\s+\\((\\S+\\s+\\S+\\s*" +
+    private static final Pattern CREATE_NEW  = Pattern.compile("(\\S+)\\s+\\(\\s*(\\S+\\s+\\S+\\s*" +
                                                "(?:,\\s*\\S+\\s+\\S+\\s*)*)\\)"),
                                  SELECT_CLS  = Pattern.compile("([^,]+?(?:,[^,]+?)*)\\s+from\\s+" +
                                                "(\\S+\\s*(?:,\\s*\\S+\\s*)*)(?:\\s+where\\s+" +
