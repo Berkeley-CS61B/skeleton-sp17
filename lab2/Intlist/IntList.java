@@ -37,9 +37,11 @@ public class IntList {
      */
     public static void dSquareList(IntList L) {
 
-        while (L != null) {
-            L.first = L.first * L.first;
-            L = L.rest;
+    	// ALWAYS use a pointer to iterate a list
+    	IntList ptrL = L;
+        while (ptrL != null) {
+            ptrL.first = ptrL.first * ptrL.first;
+            ptrL = ptrL.rest;
         }
     }
 
@@ -50,8 +52,10 @@ public class IntList {
         if (L == null) {
             return null;
         }
+
+        // We need first construct a node with the first element of L
         IntList res = new IntList(L.first * L.first, null);
-        IntList ptr = res;
+        IntList ptr = res;  // Start process the second node
         L = L.rest;
         while (L != null) {
             ptr.rest = new IntList(L.first * L.first, null);
@@ -80,17 +84,49 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        // Get the end pointer of A
+        IntList ptrA = A;
+        while (ptrA.rest != null) {
+            ptrA = ptrA.rest;
+        }
+
+        // Add the elements of B to the end of A
+        while (B != null) {
+            ptrA.rest = B;
+            B = B.rest;
+            ptrA = ptrA.rest;
+        }
+
+        return A;
     }
+
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList returnList = new IntList(A.first, null);
+
+        // Add A to the returnList
+        IntList pReturnList = returnList;
+        IntList pA = A;
+        while (pA.rest != null) {
+            pReturnList.rest = new IntList(pA.rest.first, null);
+            pA = pA.rest;
+            pReturnList = pReturnList.rest;
+        }
+
+        // Add B to the returnList
+        IntList pB = B;
+        pReturnList.rest = new IntList(pB.first, null);
+        while (pB.rest != null) {
+            pReturnList.rest.rest = new IntList(pB.rest.first, null);
+            pB = pB.rest;
+            pReturnList = pReturnList.rest;
+        }
+
+        return returnList;
     }
 
 
