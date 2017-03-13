@@ -8,11 +8,13 @@ public class ArrayDeque <Gen> {
     private Gen[] items;
     private int size;
     private int first_index;
+    private int last_index;
     private int update_constant = 2;
 
     public ArrayDeque() {
         items = (Gen[]) new Object[100];
         first_index = 0;
+        last_index = 0;
         size = 0;
     }
 
@@ -26,10 +28,22 @@ public class ArrayDeque <Gen> {
         if (size == items.length) {
             updateArray(size * update_constant);
         }
+        if (size < 0.25 * items.length) {
+            updateArray(size / update_constant);
+        }
     }
 
     private int findPrev(int index) {
         return (100 + (index - 1)) % 100;
+    }
+
+    private int findNext(int index) {
+        updateArrayWhenNeeded();
+        if (index < items.length) {
+            index += 1;
+        }
+        index = items.length - index;
+        return index;
     }
 
     public void addFirst (Gen item) {
@@ -37,35 +51,51 @@ public class ArrayDeque <Gen> {
         first_index = findPrev(first_index);
         items[first_index] = item;
         size ++;
-
     }
 
     public void addLast (Gen item) {
         updateArrayWhenNeeded();
-        it
+        last_index = findNext(last_index);
+        items[last_index] = item;
+        size ++;
     }
 
-    public boolean isEmplty() {
-        return true;
+    public boolean isEmpty() {
+        if (size == 0){
+            return true;
+        }
+        return false;
     }
 
     public int size() {
-        return 0;
+        return size;
     }
 
     public void printDeque() {
-
+        int ptr = first_index;
+        for (int i = 0; i <= size; i ++) {
+            System.out.println(items[ptr]);
+            ptr = findNext(ptr);
+        }
     }
 
-    public gen removeFirst() {
-        return null;
+    public Gen removeFirst() {
+        updateArrayWhenNeeded();
+        Gen removed = items[first_index];
+        first_index = findNext(first_index);
+        size --;
+        return removed;
     }
 
-    public gen removeLast() {
-        return null;
+    public Gen removeLast() {
+        updateArrayWhenNeeded();
+        Gen removed = items[last_index];
+        last_index = findPrev(last_index);
+        size --;
+        return removed;
     }
 
-    public gen get(int index) {
-        return null;
+    public Gen get(int index) {
+        return items[index];
     }
 }

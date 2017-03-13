@@ -1,5 +1,7 @@
 import sun.security.krb5.internal.PAForUserEnc;
 
+import java.util.Iterator;
+
 /**
  * Created by Xiao Shi on 2017/3/13.
  */
@@ -68,7 +70,11 @@ public class LinkedListDeque<Genetic> {
     }
 
     public void printDeque() {
-
+        IntNode ptr = sentinal.next;
+        while (ptr != sentinal) {
+            System.out.println(ptr.item);
+            ptr = ptr.next;
+        }
     }
 
     public Genetic removeFirst() {
@@ -111,6 +117,5 @@ public class LinkedListDeque<Genetic> {
             return sentinal.next.item;
         }
         return getrecursion(index - 1);
-
     }
 }
