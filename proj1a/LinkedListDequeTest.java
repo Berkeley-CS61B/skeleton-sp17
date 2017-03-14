@@ -1,3 +1,7 @@
+import sun.net.www.content.text.Generic;
+
+import java.nio.IntBuffer;
+
 /** Performs some basic linked list tests. */
 public class LinkedListDequeTest {
 	
@@ -19,6 +23,13 @@ public class LinkedListDequeTest {
 		return true;
 	}
 
+	public static boolean checkEqual(Integer expected, Integer actual) {
+		if (expected != actual) {
+			System.out.println("get() returned " + actual + ", but expected : " + expected);
+			return false;
+		}
+		return true;
+	}
 	/* Prints a nice message based on whether a test passed. 
 	 * The \n means newline. */
 	public static void printTestStatus(boolean passed) {
@@ -35,8 +46,7 @@ public class LinkedListDequeTest {
 	  * && is the "and" operation. */
 	public static void addIsEmptySizeTest() {
 		System.out.println("Running add/isEmpty/Size test.");
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
+
 		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -58,7 +68,7 @@ public class LinkedListDequeTest {
 		lld1.printDeque();
 
 		printTestStatus(passed);
-		*/
+
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
@@ -66,8 +76,7 @@ public class LinkedListDequeTest {
 
 		System.out.println("Running add/remove test.");
 
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
+
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
 		// should be empty 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -81,12 +90,63 @@ public class LinkedListDequeTest {
 		passed = checkEmpty(true, lld1.isEmpty()) && passed;
 
 		printTestStatus(passed);
-		*/
+
+	}
+
+	/* test the add first, add last, remove first, remove last method */
+
+	public static void addRemoveFirstLastTest() {
+
+	    System.out.println("Running add/remove first/last test.");
+
+	    LinkedListDeque <Integer> lld = new LinkedListDeque<Integer>();
+	    lld.addFirst(2);
+	    lld.addLast(3);
+	    lld.addFirst(1);
+	    lld.addLast(4);
+
+	    boolean passed = checkEqual(4, lld.removeLast());
+	    passed = checkEqual(1,lld.removeFirst()) && passed;
+
+	    printTestStatus(passed);
+    }
+
+	public static void getTest() {
+
+		System.out.println("Running get/getRecursion test.");
+
+		LinkedListDeque <Integer> lld1 = new LinkedListDeque<Integer>();
+		// check get implied on empty list
+        System.out.println("Running emplty list get test");
+		boolean passed = checkEqual(null, lld1.get(0));
+		passed = checkEqual(null, lld1.getrecursion(0)) && passed;
+
+		lld1.addFirst(1);
+		lld1.addLast(2);
+		lld1.addLast(3);
+
+		// check get implied on actual list
+        System.out.println("Running non-emplty list get test");
+		passed = checkEqual(3, lld1.get(2)) && passed;
+		passed = checkEqual(3, lld1.getrecursion(2)) && passed;
+
+		// check index out of rantge
+        System.out.println("Running list get test when index is out of range");
+		passed = checkEqual((Integer)null, lld1.get(4)) && passed;
+		passed = checkEqual((Integer)null, lld1.getrecursion(4)) && passed;
+
+		// the original list must not change
+        System.out.println("check if the size is the same, i.e. the list is the same");
+		passed = checkSize(3, lld1.size()) && passed;
+
+		printTestStatus(passed);
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
+		addRemoveFirstLastTest();
+		getTest();
 	}
 } 

@@ -1,3 +1,4 @@
+import sun.net.www.content.text.Generic;
 import sun.security.krb5.internal.PAForUserEnc;
 
 import java.util.Iterator;
@@ -6,12 +7,12 @@ import java.util.Iterator;
  * Created by Xiao Shi on 2017/3/13.
  */
 public class LinkedListDeque<Genetic> {
-    private class IntNode {
-        public IntNode prev;
+    private class StuffNode {
+        public StuffNode prev;
         public Genetic item;
-        public IntNode next;
+        public StuffNode next;
 
-        public IntNode(IntNode previous, Genetic content, IntNode following) {
+        public StuffNode(StuffNode previous, Genetic content, StuffNode following) {
             prev = previous;
             item = content;
             next = following;
@@ -19,19 +20,22 @@ public class LinkedListDeque<Genetic> {
     }
 
     // circular sentinal node
-    private IntNode sentinal;
+    private StuffNode sentinal;
     private int size;
+    private Genetic sentinal_item;
 
     //constructor with null
     public LinkedListDeque() {
-        sentinal = new IntNode(sentinal, 24, sentinal);
+        sentinal = new StuffNode(null, sentinal_item, null);
+        sentinal.next = sentinal;
+        sentinal.prev = sentinal;
         size = 0;
     }
 
     //constructor
     public LinkedListDeque (Genetic item) {
-        sentinal = new IntNode(sentinal, 24, sentinal);
-        IntNode new_node = new IntNode(null, item, null);
+        sentinal = new StuffNode(sentinal, sentinal_item, sentinal);
+        StuffNode new_node = new StuffNode(null, item, null);
         sentinal.next = new_node;
         new_node.prev = sentinal;
         sentinal.prev = new_node;
@@ -41,24 +45,24 @@ public class LinkedListDeque<Genetic> {
 
 
     public void addFirst (Genetic item) {
-        IntNode new_node = new IntNode(null, item, null);
+        StuffNode new_node = new StuffNode(null, item, null);
         new_node.next = sentinal.next;
         sentinal.next = new_node;
-        new_node.next.prev = new_node;
         new_node.prev = sentinal;
+        new_node.next.prev = new_node;
         size += 1;
     }
 
     public void addLast (Genetic item) {
-        IntNode new_node = new IntNode(null, item, null);
+        StuffNode new_node = new StuffNode(null, item, null);
         new_node.prev = sentinal.prev;
         sentinal.prev = new_node;
-        new_node.prev.next = new_node;
         new_node.next = sentinal;
+        new_node.prev.next = new_node;
         size += 1;
     }
 
-    public boolean isEmplty() {
+    public boolean isEmpty() {
         if (size == 0) {
             return true;
         }
@@ -70,7 +74,7 @@ public class LinkedListDeque<Genetic> {
     }
 
     public void printDeque() {
-        IntNode ptr = sentinal.next;
+        StuffNode ptr = sentinal.next;
         while (ptr != sentinal) {
             System.out.println(ptr.item);
             ptr = ptr.next;
@@ -79,29 +83,33 @@ public class LinkedListDeque<Genetic> {
 
     public Genetic removeFirst() {
         if (size == 0) {
-            return null;
+            return (Genetic)null;
         }
-        IntNode removed = sentinal.next;
+        StuffNode removed = sentinal.next;
         sentinal.next = removed.next;
         removed.next.prev = sentinal;
+        size -= 1;
         return removed.item;
     }
 
     public Genetic removeLast() {
         if (size == 0) {
-            return null;
+            return (Genetic)null;
         }
-        IntNode removed = sentinal.prev;
+        StuffNode removed = sentinal.prev;
         sentinal.prev = removed.prev;
         removed.prev.next = sentinal;
+        size -= 1;
         return removed.item;
     }
 
     public Genetic get(int index) {
-        if (index >= size) {
-            return null;
+        if (size == 0) {
+            return (Genetic)null;
+        } else if (index >= size) {
+            return (Genetic)null;
         }
-        IntNode ptr = sentinal.next;
+        StuffNode ptr = sentinal.next;
         int counter = 0;
         while (counter < index) {
             ptr = ptr.next;
@@ -110,12 +118,30 @@ public class LinkedListDeque<Genetic> {
         return ptr.item;
     }
 
-    public Genetic getrecursion(int index) {
-        if (size == 0 && index != 0) {
-            return null;
-        } else if (size != 0 && index == 0) {
-            return sentinal.next.item;
+    public LinkedListDeque copyLink() {
+        LinkedListDeque copy = new LinkedListDeque();
+        StuffNode ptr = sentinal.next;
+        for (int i = 0; i < size; i++) {
+            addLast(ptr.item);
+            ptr = ptr.next;
         }
-        return getrecursion(index - 1);
+        return copy;
+    }
+
+
+    public Genetic getrecursion(int index) {
+        StuffNode i = sentinal.next;
+        if (size == 0 || index >= size) {
+            return (Genetic) null;
+        }
+        return getrecursion_helper(i.next, index-1);
+
+    }
+
+    public Genetic getrecursion_helper(StuffNode p, int index) {
+        if (index == 0) {
+            return p.item;
+        }
+        return getrecursion_helper(p.next, index - 1);
     }
 }

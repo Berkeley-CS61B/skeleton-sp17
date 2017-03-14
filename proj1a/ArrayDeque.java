@@ -10,39 +10,42 @@ public class ArrayDeque <Gen> {
     private int first_index;
     private int last_index;
     private int update_constant = 2;
+    private int array_size = 8;
 
     public ArrayDeque() {
-        items = (Gen[]) new Object[100];
+        items = (Gen[]) new Object[array_size];
         first_index = 0;
         last_index = 0;
         size = 0;
     }
 
     private void updateArray(int capacity) {
-        Gen[] a = (Gen[]) new Objects[capacity];
+        Gen[] a = (Gen[]) new Object[capacity];
         System.arraycopy(items, 0, a, 0, size);
         items = a;
+        array_size = capacity;
     }
 
     private void updateArrayWhenNeeded() {
-        if (size == items.length) {
-            updateArray(size * update_constant);
+        if (size == array_size) {
+            updateArray(array_size * update_constant);
         }
-        if (size < 0.25 * items.length) {
-            updateArray(size / update_constant);
-        }
+        /*长变短的时候，因为我定义不是从0开始，可能占到后面*/
+//        } else if (size <= (0.25 * array_size)) {
+//            updateArray(array_size / update_constant);
+//        }
     }
 
     private int findPrev(int index) {
-        return (100 + (index - 1)) % 100;
+        return (array_size + (index - 1)) % array_size;
     }
 
     private int findNext(int index) {
         updateArrayWhenNeeded();
-        if (index < items.length) {
+        if (index < array_size) {
             index += 1;
         }
-        index = items.length - index;
+        index = array_size - index;
         return index;
     }
 
