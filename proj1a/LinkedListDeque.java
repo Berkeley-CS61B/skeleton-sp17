@@ -1,7 +1,8 @@
-import sun.net.www.content.text.Generic;
-import sun.security.krb5.internal.PAForUserEnc;
-
-import java.util.Iterator;
+//import edu.princeton.cs.algs4.GaussianElimination;
+//import sun.net.www.content.text.Generic;
+//import sun.security.krb5.internal.PAForUserEnc;
+//
+//import java.util.Iterator;
 
 /**
  * Created by Xiao Shi on 2017/3/13.
@@ -113,21 +114,10 @@ public class LinkedListDeque<Genetic> {
         int counter = 0;
         while (counter < index) {
             ptr = ptr.next;
-            index ++;
+            counter ++;
         }
         return ptr.item;
     }
-
-    public LinkedListDeque copyLink() {
-        LinkedListDeque copy = new LinkedListDeque();
-        StuffNode ptr = sentinal.next;
-        for (int i = 0; i < size; i++) {
-            addLast(ptr.item);
-            ptr = ptr.next;
-        }
-        return copy;
-    }
-
 
     public Genetic getrecursion(int index) {
         StuffNode i = sentinal.next;
@@ -144,4 +134,36 @@ public class LinkedListDeque<Genetic> {
         }
         return getrecursion_helper(p.next, index - 1);
     }
+
+    /* Add a method to the SLList class that inserts a new element at the given position. If the position
+     * is past the end of the list, insert the new node at the end of the list. For example,
+     * if the SLList is 5  6  2, insert(10, 1) should result in 5  10  6  2.*/
+    public void insert(Genetic item, int pos) {
+        if (pos < size) {
+            StuffNode add_in = new StuffNode(null, item, null);
+            StuffNode ptr = sentinal.next;
+            for (int i = 0; i < pos; i++) {
+                ptr = ptr.next;
+            }
+            add_in.prev = ptr.prev;
+            add_in.next = ptr;
+            ptr.prev = add_in;
+            add_in.prev.next = add_in;
+            size ++;
+        } else {
+            this.addLast(item);
+        }
+    }
+
+    public void reverse() {
+        StuffNode ptr = sentinal.next;
+        //the last node
+        StuffNode reversed = sentinal.prev;
+        for (int i = 0; i < size; i++) {
+            insert(reversed.item, i);
+            removeLast();
+            reversed = sentinal.prev;
+        }
+    }
+
 }

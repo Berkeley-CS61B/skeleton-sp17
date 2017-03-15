@@ -126,20 +126,51 @@ public class LinkedListDequeTest {
 		lld1.addLast(3);
 
 		// check get implied on actual list
-        System.out.println("Running non-emplty list get test");
 		passed = checkEqual(3, lld1.get(2)) && passed;
 		passed = checkEqual(3, lld1.getrecursion(2)) && passed;
 
 		// check index out of rantge
-        System.out.println("Running list get test when index is out of range");
 		passed = checkEqual((Integer)null, lld1.get(4)) && passed;
 		passed = checkEqual((Integer)null, lld1.getrecursion(4)) && passed;
 
 		// the original list must not change
-        System.out.println("check if the size is the same, i.e. the list is the same");
 		passed = checkSize(3, lld1.size()) && passed;
 
 		printTestStatus(passed);
+	}
+
+	public static void insertTest() {
+
+		System.out.println("Start the test of inserting in array");
+
+		LinkedListDeque <Integer> dllst = new LinkedListDeque<>();
+		dllst.addLast(1);
+		dllst.addLast(2);
+		dllst.addLast(3);
+
+		dllst.insert (8,1);
+
+		boolean passed = checkSize(4, dllst.size());
+		passed = checkEqual(8, dllst.get(1)) && passed;
+
+		dllst.insert(10,11);
+		passed = checkSize(5, dllst.size()) && passed;
+		passed = checkEqual(10, dllst.get(4)) && passed;
+
+		printTestStatus(passed);
+	}
+
+	public static void reverseTest() {
+
+		System.out.println ("Start testing the reverse method");
+
+		LinkedListDeque <Integer> dllst = new LinkedListDeque<>();
+		dllst.addLast(1);
+		dllst.addLast(2);
+		dllst.addLast(3);
+		dllst.reverse();
+
+		dllst.printDeque();
 	}
 
 	public static void main(String[] args) {
@@ -148,5 +179,7 @@ public class LinkedListDequeTest {
 		addRemoveTest();
 		addRemoveFirstLastTest();
 		getTest();
+		insertTest();
+		reverseTest();
 	}
 } 

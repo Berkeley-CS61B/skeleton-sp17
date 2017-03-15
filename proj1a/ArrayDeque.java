@@ -1,3 +1,4 @@
+import java.lang.reflect.GenericArrayType;
 import java.util.Objects;
 
 /**
@@ -34,7 +35,7 @@ public class ArrayDeque <Gen> {
     }
 
     private void updateArrayWhenNeeded() {
-        if (size == array_size) {
+        if (size >= array_size * 0.8) {
             updateArray(array_size * update_constant);
         } else if (size < (0.25 * array_size)) {
             updateArray(array_size / update_constant);
