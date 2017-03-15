@@ -30,8 +30,9 @@ public class ArrayDequeTest {
     public static void printTestStatus(boolean passed) {
         if (passed) {
             System.out.println ("Test passed!");
+        } else {
+            System.out.println("Test failed!");
         }
-        System.out.println ("Test failed!");
     }
 
     /* test the return of add in an empty array
@@ -106,6 +107,7 @@ public class ArrayDequeTest {
 
         passed = checkEqual(1,alst.get(0)) && passed;
         passed = checkEqual(2,alst.get(1)) && passed;
+        passed = checkEqual(null, alst.get(4)) && passed;
 
         printTestStatus(passed);
     }
