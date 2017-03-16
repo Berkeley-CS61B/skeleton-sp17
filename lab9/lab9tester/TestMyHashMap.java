@@ -113,9 +113,6 @@ public class TestMyHashMap {
         dictionary.put("hello", "kevin");
         assertEquals(1, dictionary.size());
         assertEquals("kevin", dictionary.get("hello"));
-        assertEquals("kevin", dictionary.remove("hello"));
-        assertEquals(null, dictionary.get("hello"));
-        assertEquals(0, dictionary.size());
 
         // putting key in multiple times does not affect behavior
         MyHashMap<String, Integer> studentIDs = new MyHashMap<>();
