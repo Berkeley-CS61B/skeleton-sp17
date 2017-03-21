@@ -393,7 +393,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     }
 
     @Test
-    public void testInsertAndRemoveAll() {
+    public void testInsertAndRemoveAllButLast() {
         ExtrinsicPQ<String> pq = new ArrayHeap<>();
         pq.insert("c", 3);
         pq.insert("i", 9);
