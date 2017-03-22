@@ -12,7 +12,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     private int size;
 
     public ArrayHeap() {
-        contents = (Node[]) new Object[16];
+        contents = new ArrayHeap.Node[16];
 
         /* Add a dummy item at the front of the ArrayHeap so that the getLeft,
          * getRight, and parent methods are nicer. */
@@ -255,7 +255,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
 
     /** Helper function to resize the backing array when necessary. */
     private void resize(int capacity) {
-        Node[] temp = (Node[]) new Object[capacity];
+        Node[] temp = new ArrayHeap.Node[capacity];
         for (int i = 1; i <= temp.length; i++) {
             temp[i] = contents[i];
         }
@@ -413,5 +413,4 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
             i += 1;
         }
     }
-
 }
