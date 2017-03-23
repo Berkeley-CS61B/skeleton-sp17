@@ -25,7 +25,7 @@ public class AlphabetEasyPuzzle implements WorldState {
             neighbs.add(new AlphabetEasyPuzzle((char) (character - 1)));
         }
         if (character + 1 <= 'z') {
-            neighbs.add(new AlphabetEasyPuzzle((char) (character - 1)));
+            neighbs.add(new AlphabetEasyPuzzle((char) (character + 1)));
         }
         return neighbs;
     }
