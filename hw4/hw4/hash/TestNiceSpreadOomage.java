@@ -30,7 +30,7 @@ public class TestNiceSpreadOomage {
     }
 
     /** After you've written haveNiceHashCodeSpread,
-     * uncomment and run this and it should pass.*/
+     * run this and it should pass.*/
     @Test
     public void testRandomOomagesHashCodeSpread() {
         List<Oomage> oomages = new ArrayList<>();
