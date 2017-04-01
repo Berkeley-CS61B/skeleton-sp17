@@ -1,9 +1,10 @@
-package p2.codeSamples;
+package examples.p2.codeSamples;
 
 public class DemoCardSuits {
 	/** Brief demonstration of how enums work in Java.
 	 *  Enums can either be created directly using
 	 *  dot notation, or can be created using valueOf notation.
+	 *  @param args
 	 */
 	public static void main(String[] args) {
 		CardSuits[] someSuits = new CardSuits[3];

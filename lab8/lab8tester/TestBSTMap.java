@@ -3,6 +3,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import lab8.BSTMap;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /** Tests by Brendan Hu, Spring 2015, revised for 2016 by Josh Hug */
 public class TestBSTMap {
 
@@ -18,7 +21,7 @@ public class TestBSTMap {
 	    }
     }
 
-    //assumes put/size/containsKey/get work
+    //assumes put/size/containsKey/get/printInOrder work
 	@Test
     public void sanityClearTest() {
     	BSTMap<String, Integer> b = new BSTMap<String, Integer>();
@@ -28,6 +31,9 @@ public class TestBSTMap {
             assertTrue( null != b.get("hi" + i)
                         && b.containsKey("hi" + i)); 
         }
+
+        b.printInOrder();
+
         b.clear();
         assertEquals(0, b.size());
         for (int i = 0; i < 455; i++) {
@@ -75,6 +81,64 @@ public class TestBSTMap {
         b.put("hi", 1);
         assertTrue(b.containsKey("hi") && b.get("hi") != null);
     }
+
+    // assume min/deleteMin work
+    @Test
+    public void TestMinDeleteMin() {
+        BSTMap<String, Integer> b = new BSTMap<String, Integer>();
+        b.put("a", 1);
+        b.put("b", 1);
+        b.put("c", 1);
+        b.put("d", 1);
+
+        BSTMap<String, Integer> c = new BSTMap<String, Integer>();
+        c.put("b", 1);
+        c.put("c", 1);
+        c.put("d", 1);
+
+        assertEquals("a", b.min());
+        b.deleteMin();
+
+    }
+
+    // assume remove work
+    @Test
+    public void TestRemove() {
+        BSTMap<String, Integer> b = new BSTMap<String, Integer>();
+        b.put("a", 1);
+        b.put("b", 1);
+        b.put("c", 1);
+        b.put("d", 1);
+
+        b.remove("a");
+        b.remove("b");
+        b.remove("c");
+        b.remove("d");
+
+        assertEquals(0, b.size());
+    }
+
+    // Assume keySet work
+    @Test
+    public void TestKeySet() {
+        BSTMap<String, Integer> b = new BSTMap<String, Integer>();
+        b.put("a", 1);
+        b.put("b", 1);
+        b.put("c", 1);
+        b.put("d", 1);
+
+        Set<String> keys = b.keySet();
+
+        Set<String> keysExpected = new HashSet<>();
+        keysExpected.add("a");
+        keysExpected.add("b");
+        keysExpected.add("c");
+        keysExpected.add("d");
+
+        assertEquals(keysExpected, keys);
+
+    }
+
 
     public static void main(String[] args) {
         jh61b.junit.TestRunner.runTests(TestBSTMap.class);

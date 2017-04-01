@@ -1,4 +1,4 @@
-package p2.codeSamples;
+package examples.p2.codeSamples;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

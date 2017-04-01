@@ -1,9 +1,9 @@
-package p2.codeSamples;
+package examples.p2.codeSamples;
 import edu.princeton.cs.introcs.In;
 
 public class InDemo {
 	/** Demo to showcase how to import In and set up
-	 *  run configurations. To do this, go to run ->
+	 *  run configurations. To do this, go to run
      *  edit configurations, and make sure the working
      *  directory is set equal to the directory that
      *  contains this file. When properly set up, this
