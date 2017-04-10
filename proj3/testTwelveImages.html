@@ -1,0 +1,32 @@
+<!--This file is a test file for your convenience.
+    It makes a request to the variable query_url and displays the base64 encoded image result. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <img id="map">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        var query_url = "http://localhost:4567/raster";
+        $.get({
+            async: false,
+            url: query_url,
+            data: { h: 566.0,
+                    lrlat: 37.8318576119893,
+                    lrlon: -122.2104604264636,
+                    ullat: 37.870213571328854,
+                    ullon: -122.30410170759153,
+                    w: 1091.0
+                   },
+            success: function(data) {
+                map.src = "data:image/png;base64," + data.b64_encoded_image_data;
+            },
+            dataType: "json"
+        });
+    </script>
+</head>
+<body>
+<p>The picture above should correspond to [img/13.png, img/14.png, img/23.png, img/24.png, img/31.png, img/32.png, img/33.png, img/34.png, img/41.png, img/42.png, img/43.png, img/44.png], and should return {raster_ul_lon=-122.2998046875, raster_height=768, depth=2, raster_lr_lon=-122.2119140625, raster_lr_lat=37.82280243352756, raster_ul_lat=37.87484726881516, query_success=true, raster_width=1024}
+</body>
+</html>
