@@ -3,9 +3,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <img id="map">
+<body>
+<p>This html file makes the following query to your code: <tt>{lrlon=-122.24053369025242, ullon=-122.24163047377972, w=892.0, h=875.0, ullat=37.87655856892288, lrlat=37.87548268822065}</tt>
+
+<p>The expected result from getMapRaster is:
+<tt>{raster_ul_lon=-122.24212646484375, depth=7, raster_lr_lon=-122.24006652832031, raster_lr_lat=37.87538940251607, render_grid=[[img/2143411.png, img/2143412.png, img/2143421.png], [img/2143413.png, img/2143414.png, img/2143423.png], [img/2143431.png, img/2143432.png, img/2143441.png]]
+, raster_ul_lat=37.87701580361881, query_success=true}</tt>
+
+<p>If your code is working properly, the appropriate image will display below.
+
+<p><img id="map">
+   <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
         var query_url = "http://localhost:4567/raster";
@@ -25,9 +33,5 @@
             dataType: "json"
         });
     </script>
-</head>
-<body>
-<p>The picture above should correspond to [img/2143411.png, img/2143412.png, img/2143413.png, img/2143414.png, img/2143421.png, img/2143423.png, img/2143431.png, img/2143432.png, img/2143441.png], and should return {raster_ul_lon=-122.24212646484375, raster_height=768, depth=7, raster_lr_lon=-122.24006652832031, raster_lr_lat=37.87538940251607, raster_ul_lat=37.87701580361881, query_success=true, raster_width=768}
-
 </body>
 </html>
