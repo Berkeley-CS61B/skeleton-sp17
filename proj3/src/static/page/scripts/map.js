@@ -136,6 +136,8 @@ $(function() {
                     if (successCallback) {
                         successCallback();
                     }
+                } else {
+                    $loadingStatus.hide();
                 }
             },
             error: function() {
