@@ -10,7 +10,8 @@ import java.util.LinkedList;
  */
 public class Router {
     /**
-     * Return a LinkedList of <code>Node</code>s representing the shortest path from st to dest.
+     * Return a LinkedList of <code>Long</code>s representing the shortest path from st to dest, 
+     * where the longs are node IDs.
      */
     public static LinkedList<Long> shortestPath(GraphDB g, double stlon, double stlat, double destlon, double destlat) {
         return new LinkedList<Long>();
