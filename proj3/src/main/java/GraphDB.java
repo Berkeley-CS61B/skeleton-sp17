@@ -67,7 +67,8 @@ public class GraphDB {
         return null;
     }
 
-    /** Returns the distance in units of longitude between vertices v and w. */
+    /** Returns the Euclidean distance between vertices v and w, where Euclidean distance
+     *  is defined as sqrt( (lonV - lonV)^2 + (latV - latV)^2 ). */
     double distance(long v, long w) {
         return 0;
     }
