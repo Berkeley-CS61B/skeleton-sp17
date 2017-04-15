@@ -24,8 +24,6 @@ public class Rasterer {
      *     The grid of images must obey the following properties, where image in the
      *     grid is referred to as a "tile".
      *     <ul>
-     *         <li>Has dimensions of at least w by h, where w and h are the user viewport width
-     *         and height.</li>
      *         <li>The tiles collected must cover the most longitudinal distance per pixel
      *         (LonDPP) possible, while still covering less than or equal to the amount of
      *         longitudinal distance per pixel in the query box for the user viewport size. </li>
