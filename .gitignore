@@ -307,6 +307,7 @@ tramp
 # Project 3 things
 proj3/img
 proj3/target
+*.osm
 
 # Project 1B things
 words
