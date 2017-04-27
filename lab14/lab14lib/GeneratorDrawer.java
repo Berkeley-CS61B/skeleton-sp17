@@ -19,7 +19,7 @@ public class GeneratorDrawer {
 		}
 
 		// Create Chart
-	    Chart chart = QuickChart.getChart("Generator Output", "X", "Y", "y(x)", xValues, samples);
+	    XYChart chart = QuickChart.getChart("Generator Output", "X", "Y", "y(x)", xValues, samples);
 	 
 	    // Show it
 	    new SwingWrapper(chart).displayChart();		
