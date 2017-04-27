@@ -1,7 +1,7 @@
 package lab14lib;
-import com.xeiam.xchart.Chart;
-import com.xeiam.xchart.QuickChart;
-import com.xeiam.xchart.SwingWrapper;
+import org.knowm.xchart.XYChart;
+import org.knowm.xchart.QuickChart;
+import org.knowm.xchart.SwingWrapper;
 
 public class GeneratorDrawer {
 	private Generator generator;
